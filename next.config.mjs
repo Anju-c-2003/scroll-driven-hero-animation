@@ -26,7 +26,7 @@ const nextConfig = {
   // ── Asset Prefix ────────────────────────────────────────────────────────
   // Prepended to every _next/static/… URL so JS, CSS and font chunks load
   // from the correct sub-path on GitHub Pages.
-  assetPrefix: isGitHubPages ? '/scroll-driven-hero-animation/' : '',
+  assetPrefix: isGitHubPages ? '/scroll-driven-hero-animation' : '',
 
   // ── Trailing Slash ──────────────────────────────────────────────────────
   // Writes pages as index.html files (e.g. /about/index.html) so GitHub

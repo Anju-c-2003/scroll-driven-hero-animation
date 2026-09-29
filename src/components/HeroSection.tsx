@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { StatCard } from './StatCard';
 import { Zap, Gauge, Wind, ArrowDown } from 'lucide-react';
+import carImg from '../../public/itz-fizz-car.png';
 
 // Register plugin once at module level (safe: guarded by typeof window in Next.js)
 if (typeof window !== 'undefined') {
@@ -306,7 +307,7 @@ export const HeroSection: React.FC = () => {
           {/* Large letter-spaced headline */}
           <h1
             ref={headlineRef}
-            className="will-transform text-[1.4rem] xs:text-2xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-[4.5rem] font-black uppercase leading-tight text-white drop-shadow-2xl flex flex-wrap justify-center w-full"
+            className="will-transform text-[1.4rem] xs:text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[3.75rem] 2xl:text-[4.2rem] font-black uppercase leading-tight text-white drop-shadow-2xl flex flex-wrap xl:flex-nowrap justify-center w-full"
             style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.2em' }}
             aria-label="Welcome ITZ FIZZ"
           >
@@ -337,10 +338,9 @@ export const HeroSection: React.FC = () => {
             style={{ background: 'rgba(0,240,255,0.18)', filter: 'blur(16px)' }}
           />
           <Image
-            // NEXT_PUBLIC_BASE_PATH is '' locally and '/scroll-driven-hero-animation'
-            // in GitHub Actions CI. Prefixing here ensures the image resolves
-            // at the correct absolute path under the GitHub Pages sub-path.
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/itz-fizz-car.png`}
+            // Using a static import lets Next.js automatically handle the basePath
+            // for GitHub Pages both locally and in the production static export.
+            src={carImg}
             alt="ITZ FIZZ Electric Hypercar — side profile of the quad-motor hypercar at rest"
             width={1200}
             height={600}
