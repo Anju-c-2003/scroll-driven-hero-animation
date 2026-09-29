@@ -8,6 +8,8 @@
  */
 const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
 
+const basePath = isGitHubPages ? '/scroll-driven-hero-animation' : '';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // ── Static HTML Export ──────────────────────────────────────────────────
@@ -19,7 +21,7 @@ const nextConfig = {
   // Set to the GitHub repository name in CI so all internal Next.js links
   // are correctly prefixed under /scroll-driven-hero-animation/.
   // Empty during local development so localhost:3000 works normally.
-  basePath: isGitHubPages ? '/scroll-driven-hero-animation' : '',
+  basePath,
 
   // ── Asset Prefix ────────────────────────────────────────────────────────
   // Prepended to every _next/static/… URL so JS, CSS and font chunks load
@@ -36,6 +38,15 @@ const nextConfig = {
   // exports. `unoptimized: true` passes images through as-is.
   images: {
     unoptimized: true,
+  },
+
+  // ── Public Environment Variable ─────────────────────────────────────────
+  // NEXT_PUBLIC_ variables are inlined at build time and available in both
+  // server and client components. Components use this to correctly prefix
+  // public/ asset URLs (e.g. images) that are NOT routed through next/image
+  // optimization and therefore don't get basePath applied automatically.
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
   },
 };
 

@@ -248,7 +248,7 @@ export const HeroSection: React.FC = () => {
       ref={sectionRef}
       // 300vh gives a generous scroll distance so the animation
       // is comfortably visible before the next section appears
-      className="relative min-h-[300vh] bg-[#05070a] overflow-hidden"
+      className="relative min-h-[300vh] bg-[#05070a]"
       aria-label="ITZ FIZZ Hypercar Hero"
     >
       {/* ── Sticky Viewport (stays pinned while section scrolls) ── */}
@@ -292,7 +292,7 @@ export const HeroSection: React.FC = () => {
         </svg>
 
         {/* ── ROW 1: Subtitle badge + Headline ── */}
-        <div className="relative z-20 text-center max-w-5xl mx-auto pt-1 sm:pt-2 flex flex-col items-center gap-3">
+        <div className="relative z-20 text-center w-full max-w-7xl mx-auto pt-1 sm:pt-2 flex flex-col items-center gap-3">
           {/* Subtitle badge */}
           <div
             ref={subtitleRef}
@@ -306,7 +306,7 @@ export const HeroSection: React.FC = () => {
           {/* Large letter-spaced headline */}
           <h1
             ref={headlineRef}
-            className="will-transform text-[1.4rem] xs:text-2xl sm:text-4xl md:text-5xl lg:text-[4.5rem] font-black uppercase leading-tight text-white drop-shadow-2xl"
+            className="will-transform text-[1.4rem] xs:text-2xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-[4.5rem] font-black uppercase leading-tight text-white drop-shadow-2xl flex flex-wrap justify-center w-full"
             style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.2em' }}
             aria-label="Welcome ITZ FIZZ"
           >
@@ -337,7 +337,10 @@ export const HeroSection: React.FC = () => {
             style={{ background: 'rgba(0,240,255,0.18)', filter: 'blur(16px)' }}
           />
           <Image
-            src="/itz-fizz-car.png"
+            // NEXT_PUBLIC_BASE_PATH is '' locally and '/scroll-driven-hero-animation'
+            // in GitHub Actions CI. Prefixing here ensures the image resolves
+            // at the correct absolute path under the GitHub Pages sub-path.
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/itz-fizz-car.png`}
             alt="ITZ FIZZ Electric Hypercar — side profile of the quad-motor hypercar at rest"
             width={1200}
             height={600}
